@@ -3,16 +3,18 @@ import Photo from './Photo';
 
 class Comments extends Component {
   renderComments(comment, index) {
+    console.log(this.props);
     return (
       <div className='comment' key={index}>
         <p>
           <strong>{comment.user}</strong>
           {comment.text}
-          <button className='remove-comment' onClick={this}>&times;</button>
+          <button className="remove-comment" onClick={this.props.removeComment.bind(null, this.props.params.postId, index)}>&times;</button>
         </p>
       </div>
     )
   }
+
 
   handleSubmit(event) {
     event.preventDefault();
@@ -27,7 +29,7 @@ class Comments extends Component {
 
     return (
       <div className='comments'>
-        {this.props.postComments.map(this.renderComments)}
+        {this.props.postComments.map(this.renderComments.bind(this))}
         <form ref='commentForm' className='comment-form' onSubmit={this.handleSubmit.bind(this)}>
           <input ref="text" ref="author" placeholder="author" />
           <input ref="text" ref="comment" placeholder="comment" />

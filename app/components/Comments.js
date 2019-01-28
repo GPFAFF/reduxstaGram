@@ -15,7 +15,6 @@ class Comments extends Component {
     )
   }
 
-
   handleSubmit(event) {
     event.preventDefault();
     const { postId } = this.props.params;
@@ -26,7 +25,6 @@ class Comments extends Component {
   }
 
   render() {
-
     return (
       <div className='comments'>
         {this.props.postComments.map(this.renderComments.bind(this))}
